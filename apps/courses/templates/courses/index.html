@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Django Courses</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'courses/css/course_styles.css' %}">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <div class="navbar">
+          <h1>Assignment: Courses with Django</h1>
+        </div>
+      </div>
+      <div class="container">
+        <div class="course_form">
+          <div class="messages">
+            {% if messages %}
+            <ul class="messages">
+              {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+          <form class="form-group" action="/courses/add_course" method="post">
+            {% csrf_token %}
+            <h1>Add a new Course</h1>
+            Name: <input type="text" name="name" value="">
+            Description: <input type="textarea" name="desc" value="">
+            <input class="btn btn-primary" type="submit" name="submit_btn" value="Add">
+          </form>
+        </div>
+        <div class="table_container">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Course Name:</th>
+                <th scope="col">Description:</th>
+                <th scope="col">Date added</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for course in courses %}
+              <tr>
+                <th scope="row">{{ course.id }}</th>
+                <td>{{ course.name }}</td>
+                <td>{{ course.desc }}</td>
+                <td>{{ course.created_at }}</td>
+                <td><a href="/courses/destroy/{{ course.id }}">Remove</a></td>
+                <!-- <form class="form-grorp" action="/courses/destroy/<id>" method="post">
+                  <input type="submit" name="" value="Remove">
+                </form> -->
+
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

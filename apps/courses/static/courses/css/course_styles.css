@@ -1,0 +1,50 @@
+* {
+  margin: 0px auto;
+
+}
+
+.header {
+  height: 100px;
+  background-color: lightgrey;
+  text-align: center;
+}
+
+
+
+h1 {
+  padding-top: 25px;
+}
+
+
+
+.course_form {
+  width: 500px;
+  display: inline-block;
+}
+
+input {
+  width: 100%;
+  padding: 5px 0px;
+  margin-bottom: 10px;
+}
+
+.center_container {
+  display: flex;
+  justify-content: center;
+}
+
+.delete_container {
+  /* width: 500px; */
+  display: inline-block;
+  justify-content: center;
+  background-color: lightblue;
+  border: 2px solid black;
+  padding: 15px;
+  margin-top: 50px;
+}
+
+.btn_container {
+  width: 250px;
+  display: flex;
+  margin: 20px 0px 0px 0px;
+}
